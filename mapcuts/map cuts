@@ -1,0 +1,40 @@
+import os
+#import sptpol_software.util.hdf as hdf
+#from sptpol_software.util.tools import stat
+from os.path import basename
+
+table=[]
+
+def sumWeight(map):
+    totalWeight = 0
+    for x in range(len(data.weight)):
+        for y in range(len(data.weight[0])):
+            totalWeight += map.weight[x,y]
+    return totalWeight
+
+def medianWeight(map):
+    print "yo"
+
+def coAdd(pathA,pathB):
+    listOfMaps = []
+    for mapA in os.walk(pathA):
+        print str(mapA) #debug - see what map program is up to
+        for mapB in os.walk(pathB):
+            print str(mapB) #debug - see what map program is up to
+            if str(mapA) == str(mapB):
+                mapData = []
+                dataA = hdf.readSptHDF5(mapA)
+                dataB = hdf.readSptHDF5(mapB)
+                coAddData = dataA + dataB
+                name = basename(mapA) #debug
+                mapData.append("Date: " + name[26:30] + "/" + name[30:32] + "/" + name[32:34] + " " + name[35:37] + ":" + name[37:39]+ ":" + name[39:41])
+                mapData.append(sumWeight(coAddData))
+
+                listOfMaps.append(mapData)
+
+
+"""
+ ra0hdec-57.5_ra0hdec-57p5_20141211_200227_150ghz.h5
+ 012345678901234578901234567890123456789012345678901
+           10       20        30        40        50"""
+
